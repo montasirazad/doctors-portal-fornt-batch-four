@@ -1,30 +1,44 @@
-import React from 'react';
-import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-
+import Grid from '@mui/material/Grid';
+import React from 'react';
+import cavity from '../../../images/cavity.png';
+import fluoride from '../../../images/fluoride.png';
+import whitening from '../../../images/whitening.png';
+import Service from '../Service/Service';
 const Services = () => {
-    const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-        ...theme.typography.body2,
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    }));
+
+
+    const services = [
+        {
+            name: 'Fluoride Treatment',
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat at temporibus ullam voluptates accusamus hic tempore natus modi dolores beatae.',
+            img: fluoride
+        },
+        {
+            name: 'Cavity Treatment',
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat at temporibus ullam voluptates accusamus hic tempore natus modi dolores beatae.',
+            img: cavity
+        },
+        {
+            name: 'Teeth Whitening',
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat at temporibus ullam voluptates accusamus hic tempore natus modi dolores beatae.',
+            img: whitening
+        }
+    ];
+    
     return (
-        <Box sx={{ flexGrow: 1 }}>
-           <Container>
-           <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                {Array.from(Array(6)).map((_, index) => (
-                    <Grid item xs={4} sm={4} md={4} key={index}>
-                        <Item>xs=2</Item>
+        <div>
+            <Container>
+                <Box >
+                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                         {
+                             services.map(service =><Service service={service} key={service.name}></Service>)
+                         }
                     </Grid>
-                ))}
-            </Grid>
-           </Container>
-        </Box>
+                </Box>
+            </Container>
+        </div>
     );
 };
 
