@@ -1,18 +1,16 @@
-import Grid from '@mui/material/Grid';
-import React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import CardMedia from '@mui/material/CardMedia';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import React from 'react';
 
 const Service = (props) => {
     const { name, description, img } = props.service;
     return (
 
         <Grid item xs={4} sm={4} md={4} mt={5} >
-            <Card sx={{ minWidth: 275 }}>
+            <Card sx={{ minWidth: 275, boxShadow:0 }}>
                 <CardContent>
                     <CardMedia
                         component="img"
@@ -26,16 +24,12 @@ const Service = (props) => {
                         {name}
                     </Typography>
 
-                    {/* <Typography sx={{ mb: 1.5 }} color="text.secondary"> adjective</Typography> */}
-
                     <Typography variant="body2">
                         {description}
                     </Typography>
 
                 </CardContent>
-                <CardActions>
-                    <Button size="small">Learn More</Button>
-                </CardActions>
+                
             </Card>
         </Grid>
 
