@@ -18,7 +18,7 @@ const AppointmentBanner = () => {
             <Box style={appointMentBg} sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={6}>
-                        <img src={doctor} style={{ height: '400px', marginTop: '-150px' }} alt="" />
+                        <img src={doctor} style={{ height: '400px', marginTop: '-95px' }} alt="" />
                     </Grid>
 
                     <Grid item xs={12} md={6} sx={{
@@ -38,7 +38,7 @@ const AppointmentBanner = () => {
                             <Typography variant='h4' sx={{my:5}} style={{ color: 'white', fontSize: 14, fontWeight: 300 }}>
                                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, maxime.
                             </Typography>
-                            <Typography variant='h4'>
+                            <Typography variant='h4'sx={{my:5}}>
                                 <Button variant='contained'>Learn More</Button>
                             </Typography>
                         </Box>
