@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
-import { Button, Container, Grid, TextField, Typography } from '@mui/material';
+import { Button, Container, Grid, TextField, Typography, CircularProgress } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
 
 
 const Register = () => {
     const [logInData, setLogInData] = useState({})
 
+    const { user, registerUser, isLoading } = useAuth();
 
     const handleOnChange = e => {
         const field = e.target.name;
         const value = e.target.value;
         const newLogInData = { ...logInData };
         newLogInData[field] = value;
-        console.log(newLogInData);
         setLogInData(newLogInData)
+        console.log(logInData);
 
     }
     const handleLoginSubmit = e => {
-
+        if (logInData.password !== logInData.password2) {
+            alert('Password did not match')
+            return
+        }
+        registerUser(logInData.email, logInData.password)
         e.preventDefault()
     }
     return (
@@ -26,7 +32,7 @@ const Register = () => {
                 <Grid item sx={{ mt: 5 }} xs={12} md={6}>
                     <Typography variant="body1" gutterBottom>REGISTER</Typography>
 
-                    <form onSubmit={handleLoginSubmit}>
+                    {!isLoading && <form onSubmit={handleLoginSubmit}>
 
                         <TextField
                             sx={{ width: '75%', m: 1 }}
@@ -60,7 +66,12 @@ const Register = () => {
                         <NavLink to='/login' style={{ textDecoration: 'none' }}>
                             <Button variant="text">Already registered ? Please Log in</Button>
                         </NavLink>
-                    </form>
+                    </form>}
+                    {
+                        isLoading && <CircularProgress />
+                    }
+
+                    
                 </Grid>
 
 

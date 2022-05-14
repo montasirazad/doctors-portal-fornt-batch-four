@@ -9,8 +9,10 @@ initializeFirebase();
 const useFirebase = () => {
 
     const [user, setUser] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     const registerUser = (email, password) => {
+        setIsLoading(true);
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -21,10 +23,12 @@ const useFirebase = () => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
 
-            });
+            })
+            .finally(() => setIsLoading(false))
     }
 
     const logInUser = (email, password) => {
+        setIsLoading(true)
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -35,7 +39,8 @@ const useFirebase = () => {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-            });
+            })
+            .finally(() => setIsLoading(false))
     }
     /// Observe user state
     useEffect(() => {
@@ -47,6 +52,7 @@ const useFirebase = () => {
             } else {
                 setUser({})
             }
+            setIsLoading(false)
         });
 
         return () => unSubscribe;
@@ -59,13 +65,15 @@ const useFirebase = () => {
             // Sign-out successful.
         }).catch((error) => {
             // An error happened.
-        });
+        })
+            .finally(() => setIsLoading(false));
     }
     return {
         user,
         registerUser,
         logOut,
-        logInUser
+        logInUser,
+        isLoading
     }
 }
 
