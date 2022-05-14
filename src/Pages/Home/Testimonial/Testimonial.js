@@ -1,15 +1,11 @@
-import React from 'react';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-import { deepOrange, deepPurple } from '@mui/material/colors';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import React from 'react';
 import people1 from '../../../images/people-1.png';
 import people2 from '../../../images/people-2.png';
 import people3 from '../../../images/people-3.png';
@@ -22,7 +18,7 @@ const Testimonial = () => {
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
 
-                <Grid item xs={10} style={{ textAlign:'left', marginLeft:'15px' }} >
+                <Grid item xs={10} sx={{ color: 'info.main' }} style={{ textAlign: 'left', marginLeft: '15px' }} >
                     <h5>Testimonial</h5>
                     <h3>What Our Patient Say</h3>
                 </Grid>
@@ -38,8 +34,8 @@ const Testimonial = () => {
                                     Lizards are a widespread group of squamate reptiles, with over 6,000
                                     species, ranging across all continents except Antarctica
                                 </Typography>
-                                <div style={{display:'flex'}}>
-                                    <Avatar alt="" src={people1} sx={{mx:2,my:2}}/>
+                                <div style={{ display: 'flex' }}>
+                                    <Avatar alt="" src={people1} sx={{ mx: 2, my: 2 }} />
                                     <h6>amet consectetur.</h6>
                                 </div>
                             </CardContent>
@@ -56,8 +52,8 @@ const Testimonial = () => {
                                     species, ranging across all continents except Antarctica
                                 </Typography>
 
-                                <div style={{display:'flex'}}>
-                                    <Avatar alt="" src={people2} sx={{mx:2,my:2}}/>
+                                <div style={{ display: 'flex' }}>
+                                    <Avatar alt="" src={people2} sx={{ mx: 2, my: 2 }} />
                                     <h6>Lorem, ipsum.</h6>
                                 </div>
 
@@ -78,8 +74,8 @@ const Testimonial = () => {
                                     species, ranging across all continents except Antarctica
                                 </Typography>
 
-                                <div style={{display:'flex'}}>
-                                    <Avatar alt="" src={people3} sx={{mx:2,my:2}}/>
+                                <div style={{ display: 'flex' }}>
+                                    <Avatar alt="" src={people3} sx={{ mx: 2, my: 2 }} />
                                     <h6>dolor sit.</h6>
                                 </div>
 
