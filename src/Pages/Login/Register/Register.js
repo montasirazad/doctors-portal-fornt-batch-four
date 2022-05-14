@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Container, Grid, TextField, Typography, CircularProgress } from '@mui/material';
+import { Button, Container, Grid, TextField, Typography, CircularProgress, Alert } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
@@ -7,7 +7,7 @@ import useAuth from '../../../hooks/useAuth';
 const Register = () => {
     const [logInData, setLogInData] = useState({})
 
-    const { user, registerUser, isLoading } = useAuth();
+    const { user, registerUser, isLoading, authError } = useAuth();
 
     const handleOnChange = e => {
         const field = e.target.name;
@@ -70,8 +70,12 @@ const Register = () => {
                     {
                         isLoading && <CircularProgress />
                     }
-
-                    
+                    {
+                        user?.email && <Alert severity="success">User Created Successfully</Alert>
+                    }
+                    {
+                        authError && <Alert severity="error">{authError}</Alert>
+                    }
                 </Grid>
 
 
