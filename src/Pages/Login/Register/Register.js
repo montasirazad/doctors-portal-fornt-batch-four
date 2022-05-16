@@ -15,7 +15,7 @@ const Register = () => {
         const newLogInData = { ...logInData };
         newLogInData[field] = value;
         setLogInData(newLogInData)
-        console.log(logInData);
+        //console.log(logInData);
 
     }
     const handleLoginSubmit = e => {
