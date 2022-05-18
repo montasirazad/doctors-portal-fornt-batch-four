@@ -12,7 +12,7 @@ import useAuth from '../../../hooks/useAuth';
 
 const Navigation = () => {
 
-    const { user, logOut,registerUser } = useAuth();
+    const { user, logOut, registerUser } = useAuth();
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -33,7 +33,13 @@ const Navigation = () => {
                     <Link to='/appointment'>APPOINTMENT</Link>
                     {
                         user?.email ?
-                            <Button onClick={logOut} color="inherit">Log out</Button> :
+                            <Box>
+                                <NavLink to='/dashboard' style={{ textDecoration: 'none', color: 'white' }}>
+                                    <Button color="inherit">DASHBOARD</Button>
+                                </NavLink>
+                                <Button onClick={logOut} color="inherit">Log out</Button>
+                            </Box>
+                            :
 
                             <NavLink to='/login' style={{ textDecoration: 'none', color: 'white' }}>
                                 <Button color="inherit">Login</Button>
