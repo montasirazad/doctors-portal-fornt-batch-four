@@ -6,8 +6,8 @@ import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 
 
 
-const Calender = ({date,setDate}) => {
-    
+const Calender = ({ date, setDate }) => {
+
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
             <StaticDatePicker
