@@ -1,13 +1,14 @@
 import { Alert, Button, CircularProgress, Container, Grid, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import login from '../../../images/login.png';
 
 const LogIn = () => {
 
-    const [logInData, setLogInData] = useState({})
-    const { user, logInUser, isLoading, authError } = useAuth()
+    const [logInData, setLogInData] = useState({});
+    const { user, logInUser, isLoading, authError, signInWithGoogle } = useAuth();
+    const location = useLocation();
 
     const handleOnChange = e => {
         const field = e.target.name;
@@ -21,6 +22,9 @@ const LogIn = () => {
         logInUser(logInData.email, logInData.password)
         e.preventDefault()
     }
+    const handleGoogleSignIn = () => {
+        signInWithGoogle(location)
+    }
 
     return (
         <Container>
@@ -29,7 +33,7 @@ const LogIn = () => {
                     <Typography variant="body1" gutterBottom>Login</Typography>
 
                     <form onSubmit={handleLoginSubmit}>
-
+                       
                         <TextField
                             sx={{ width: '75%', m: 1 }}
                             id="standard-basic"
@@ -64,6 +68,8 @@ const LogIn = () => {
                             authError && <Alert severity="error">{authError}</Alert>
                         }
                     </form>
+                    <p>------------------------------</p>
+                    <Button onClick={handleGoogleSignIn} variant="contained">Google Sign IN</Button>
                 </Grid>
 
                 <Grid item xs={4}>

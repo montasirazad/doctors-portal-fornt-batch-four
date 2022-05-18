@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Container, Grid, TextField, Typography, CircularProgress, Alert } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
+import login from '../../../images/login.png';
 
 
 const Register = () => {
@@ -9,7 +10,7 @@ const Register = () => {
 
     const { user, registerUser, isLoading, authError } = useAuth();
 
-    const handleOnChange = e => {
+    const handleOnBlur = e => {
         const field = e.target.name;
         const value = e.target.value;
         const newLogInData = { ...logInData };
@@ -33,31 +34,39 @@ const Register = () => {
                     <Typography variant="body1" gutterBottom>REGISTER</Typography>
 
                     {!isLoading && <form onSubmit={handleLoginSubmit}>
+                        <TextField
+                            sx={{ width: '75%', m: 1 }}
+                            label="Your Name"
 
+                            onBlur={handleOnBlur}
+                            name='name'
+                            type='text'
+                            variant="standard" />
                         <TextField
                             sx={{ width: '75%', m: 1 }}
                             id="standard-basic"
                             label="Your Email"
-                            onChange={handleOnChange}
+                            required
+                            onBlur={handleOnBlur}
                             name='email'
                             variant="standard" />
 
                         <TextField
                             sx={{ width: '75%', m: 1 }}
-
+                            required
                             label="Your Password"
                             type="password"
-                            onChange={handleOnChange}
+                            onBlur={handleOnBlur}
                             name='password'
                             variant="standard"
                             autoComplete="current-password"
                         />
                         <TextField
                             sx={{ width: '75%', m: 1 }}
-
+                            required
                             label="Retype Your Password"
                             type="password"
-                            onChange={handleOnChange}
+                            onBlur={handleOnBlur}
                             name='password2'
                             variant="standard"
                             autoComplete="current-password"
@@ -77,7 +86,9 @@ const Register = () => {
                         authError && <Alert severity="error">{authError}</Alert>
                     }
                 </Grid>
-
+                <Grid item xs={4}>
+                    <img src={login} style={{ width: '150%' }} alt="" />
+                </Grid>
 
             </Grid>
         </Container>
