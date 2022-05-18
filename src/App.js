@@ -15,6 +15,7 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/home' element={<Home />} />
           <Route path='/login' element={<LogIn />} />
           <Route path='/register' element={<Register />} />
           <Route path='/appointment' element={<PrivateRoute>
@@ -23,7 +24,7 @@ function App() {
           <Route path='/dashboard' element={<PrivateRoute>
             <DashBoard />
           </PrivateRoute>} />
-          <Route path='/home' element={<Home />} />
+          
         </Routes>
       </AuthProvider>
     </div>
