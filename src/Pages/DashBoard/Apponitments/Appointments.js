@@ -8,22 +8,24 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const Appointments = () => {
+const Appointments = ({ date }) => {
     const [appointments, setAppointments] = useState([]);
     const { user } = useAuth();
+
     useEffect(() => {
-        const url = `http://localhost:5000/appointments?email=${user.email}`
+        const url = `http://localhost:5000/appointments?email=${user.email}&date=${date}`
         fetch(url)
             .then(res => res.json())
             .then(data => {
                 setAppointments(data)
             })
-    }, [])
+    }, [date])
+
     return (
         <div>
             <h1>Appointments: {appointments.length}</h1>
             <TableContainer component={Paper}>
-                <Table  aria-label="Appointments table">
+                <Table aria-label="Appointments table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Name</TableCell>
@@ -42,8 +44,8 @@ const Appointments = () => {
                                 </TableCell>
                                 <TableCell align="right">{row.time}</TableCell>
                                 <TableCell align="right">{row.fat}</TableCell>
-                                <TableCell align="right">{row.carbs}</TableCell>
-                                <TableCell align="right">{row.protein}</TableCell>
+                                <TableCell align="right">{row.serViceName}</TableCell>
+                                 
                             </TableRow>
                         ))}
                     </TableBody>

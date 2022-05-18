@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -18,14 +18,15 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Grid } from '@mui/material';
 import Calender from '../../Shared/Calender/Calender';
-import Appointments from '../Appontments/Appointments';
+import Appointments from '../Apponitments/Appointments';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 200;
 
 function DashBoard(props) {
     const { window } = props;
-    const [mobileOpen, setMobileOpen] = React.useState(false);
-
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const [date, setDate] = useState(new Date());
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -33,6 +34,7 @@ function DashBoard(props) {
     const drawer = (
         <div>
             <Toolbar />
+            <Link to='/appointment'>Book APPOINTMENT</Link>
             <Divider />
             <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -115,17 +117,20 @@ function DashBoard(props) {
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
-                
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={5}>
-                            <Calender />
-                        </Grid>
-                        <Grid item xs={12} sm={7}>
-                            <Appointments />
-                        </Grid>
 
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={5}>
+                        <Calender
+                            date={date}
+                            setDate={setDate}
+                        ></Calender>
                     </Grid>
-                
+                    <Grid item xs={12} sm={7}>
+                        <Appointments date={date} />
+                    </Grid>
+
+                </Grid>
+
 
             </Box>
         </Box>
