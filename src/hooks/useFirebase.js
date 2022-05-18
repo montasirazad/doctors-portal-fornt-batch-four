@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import initializeFirebase from "../Pages/Login/Firebase/firebase.init";
-import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+    getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged,
+    signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile
+} from "firebase/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 
 
@@ -18,7 +21,7 @@ const useFirebase = () => {
     const auth = getAuth();
 
 
-    const registerUser = (email, password) => {
+    const registerUser = (email, password, name) => {
         setIsLoading(true);
 
         createUserWithEmailAndPassword(auth, email, password)
@@ -26,7 +29,18 @@ const useFirebase = () => {
                 const user = userCredential.user;
                 console.log(user);
                 setAuthError('');
-
+                const newUser = { email, displayName: name }
+                setUser(newUser)
+                updateProfile(auth.currentUser, {
+                    displayName: name
+                }).then(() => {
+                    // Profile updated!
+                    // ...
+                }).catch((error) => {
+                    // An error occurred
+                    // ...
+                });
+                navigate('/');
 
                 //navigate('/login');
             })
@@ -73,11 +87,11 @@ const useFirebase = () => {
             }).catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                 const email = error.email;
+                const email = error.email;
                 const credential = GoogleAuthProvider.credentialFromError(error);
                 setAuthError(errorMessage);
                 console.log(authError);
-               
+
             })
             .finally(() => setIsLoading(false))
     }

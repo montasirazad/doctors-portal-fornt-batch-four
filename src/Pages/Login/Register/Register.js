@@ -24,7 +24,7 @@ const Register = () => {
             alert('Password did not match')
             return
         }
-        registerUser(logInData.email, logInData.password)
+        registerUser(logInData.email, logInData.password, logInData.name)
         e.preventDefault()
     }
     return (
