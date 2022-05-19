@@ -31,6 +31,7 @@ const useFirebase = () => {
                 setAuthError('');
                 const newUser = { email, displayName: name }
                 setUser(newUser)
+                saveUser(email, name)
                 updateProfile(auth.currentUser, {
                     displayName: name
                 }).then(() => {
@@ -121,6 +122,10 @@ const useFirebase = () => {
             // An error happened.
         })
             .finally(() => setIsLoading(false));
+    }
+
+    const saveUser = (email, displayName) => {
+
     }
     return {
         user,
