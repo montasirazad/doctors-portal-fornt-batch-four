@@ -16,17 +16,14 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Grid } from '@mui/material';
-import Calender from '../../Shared/Calender/Calender';
-import Appointments from '../Apponitments/Appointments';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 const drawerWidth = 200;
 
 function DashBoard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = useState(false);
-    const [date, setDate] = useState(new Date());
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -34,8 +31,23 @@ function DashBoard(props) {
     const drawer = (
         <div>
             <Toolbar />
-            <Link to='/appointment'>Book APPOINTMENT</Link>
             <Divider />
+            <Link to='/appointment'>
+                <Button color='inherit'>Book Appointment</Button>
+            </Link>
+            <Link to='/dashboard'>
+                <Button color='inherit'>Dashboard</Button>
+            </Link>
+
+            <Link to='/dashboard/makeAdmin'>
+                <Button color='inherit'>Make Admin</Button>
+            </Link>
+            <Link to='/dashboard/addDoctor'>
+                <Button color='inherit'>Add Doctor</Button>
+            </Link>
+
+
+
             <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem key={text} disablePadding>
@@ -118,18 +130,7 @@ function DashBoard(props) {
             >
                 <Toolbar />
 
-                <Grid container spacing={2}>
-                    <Grid item xs={12} sm={5}>
-                        <Calender
-                            date={date}
-                            setDate={setDate}
-                        ></Calender>
-                    </Grid>
-                    <Grid item xs={12} sm={7}>
-                        <Appointments date={date} />
-                    </Grid>
 
-                </Grid>
 
 
             </Box>

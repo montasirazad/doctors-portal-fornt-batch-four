@@ -18,13 +18,16 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/login' element={<LogIn />} />
           <Route path='/register' element={<Register />} />
+
+          {/* private route */}
           <Route path='/appointment' element={<PrivateRoute>
             <Appointment />
           </PrivateRoute>} />
+
           <Route path='/dashboard' element={<PrivateRoute>
             <DashBoard />
           </PrivateRoute>} />
-          
+
         </Routes>
       </AuthProvider>
     </div>
