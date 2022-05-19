@@ -16,7 +16,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { Button } from '@mui/material';
 
 const drawerWidth = 200;
@@ -131,7 +131,7 @@ function DashBoard(props) {
                 <Toolbar />
 
 
-
+                <Outlet />
 
             </Box>
         </Box>
