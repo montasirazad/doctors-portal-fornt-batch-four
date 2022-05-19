@@ -32,6 +32,8 @@ const useFirebase = () => {
                 const newUser = { email, displayName: name }
                 setUser(newUser)
                 saveUser(email, name)
+
+                // update profile
                 updateProfile(auth.currentUser, {
                     displayName: name
                 }).then(() => {
@@ -125,8 +127,19 @@ const useFirebase = () => {
     }
 
     const saveUser = (email, displayName) => {
+        const user = {
+            email, displayName
+        }
+        fetch('http://localhost:5000/users',{
+            method:'POST',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify( user)
 
+        })
     }
+
     return {
         user,
         registerUser,
