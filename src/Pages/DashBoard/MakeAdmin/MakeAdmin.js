@@ -44,7 +44,7 @@ const MakeAdmin = () => {
                 <Button type='submit' variant='contained'>Make Admin</Button>
             </form>
             {
-                success && <Alert severity="success">Make Admin Successfully</Alert>
+                success && <Alert severity="success">Made Admin Successfully</Alert>
             }
         </div>
     );

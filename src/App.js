@@ -7,6 +7,7 @@ import DashBoard from './Pages/DashBoard/DashBoard/DashBoard';
 import DashBoardHome from './Pages/DashBoard/DashBoardHome/DashBoardHome';
 import MakeAdmin from './Pages/DashBoard/MakeAdmin/MakeAdmin';
 import Home from './Pages/Home/Home/Home';
+import AdminRoute from './Pages/Login/Login/AdminRoute/AdminRoute';
 import LogIn from './Pages/Login/Login/LogIn';
 import PrivateRoute from './Pages/Login/Login/PrivateRoute/PrivateRoute';
 import Register from './Pages/Login/Register/Register';
@@ -26,12 +27,18 @@ function App() {
           <Route path='/appointment' element={<PrivateRoute>
             <Appointment />
           </PrivateRoute>} />
-          
+
           {/* Nested Route */}
-          <Route path='/dashboard' element={<PrivateRoute><DashBoard /></PrivateRoute>} >
+          <Route path='/dashboard' element={<PrivateRoute>
+            <DashBoard />
+          </PrivateRoute>} >
 
             <Route path='/dashboard' element={<DashBoardHome />} />
-            <Route path='/dashboard/makeAdmin' element={<MakeAdmin />} />
+
+            <Route path='/dashboard/makeAdmin' element={<AdminRoute>
+              <MakeAdmin />
+            </AdminRoute>} />
+            
             <Route path='/dashboard/addDoctor' element={<AddDoctor />} />
 
           </Route>
